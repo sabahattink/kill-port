@@ -1,0 +1,33 @@
+{
+  "name": "@scuton/kill-port",
+  "version": "1.0.0",
+  "description": "Kill any process running on a specified port. Cross-platform.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "kill-port": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "dev": "tsup --watch"
+  },
+  "keywords": ["kill", "port", "process", "cli", "cross-platform"],
+  "author": "Scuton Technology",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "tsup": "^8.0.0",
+    "vitest": "^2.0.0",
+    "@types/node": "^20.0.0"
+  }
+}
