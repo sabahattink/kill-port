@@ -24,6 +24,14 @@
   "keywords": ["kill", "port", "process", "cli", "cross-platform"],
   "author": "Scuton Technology",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scuton-technology/kill-port.git"
+  },
+  "homepage": "https://github.com/scuton-technology/kill-port#readme",
+  "bugs": {
+    "url": "https://github.com/scuton-technology/kill-port/issues"
+  },
   "devDependencies": {
     "typescript": "^5.6.0",
     "tsup": "^8.0.0",

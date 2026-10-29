@@ -67,7 +67,7 @@ Returns: `{ port: number, killed: boolean, pid?: number }`
 
 Type: `number`
 
-Port number (1–65535).
+Port number (1–65535). Throws a `RangeError` for anything else.
 
 ### getProcessOnPort(port)
 
@@ -79,8 +79,8 @@ Returns: `{ pid: number, name?: string } | null`
 
 | Platform | Method |
 |----------|--------|
-| Windows | `netstat -ano` → `taskkill /PID` |
-| macOS/Linux | `lsof -ti :PORT` → `kill -9` |
+| Windows | `netstat -ano` (TCP listeners on the exact local port) → `taskkill /PID <pid> /F` |
+| macOS/Linux | `lsof -nP -iTCP:PORT -sTCP:LISTEN -t` → `SIGKILL` |
 
 ## FAQ
 
