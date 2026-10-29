@@ -1,4 +1,5 @@
 import { killPort } from './lib/killer';
+import { parsePortArgs } from './lib/parse';
 import { green, red, yellow, bold, cyan } from './lib/colors';
 
 const args = process.argv.slice(2);
@@ -26,11 +27,14 @@ if (args.includes('--version') || args.includes('-v')) {
   process.exit(0);
 }
 
-const ports = args.map(Number).filter(p => !isNaN(p) && p > 0 && p < 65536);
+const { ports, invalid } = parsePortArgs(args);
+
+for (const arg of invalid) {
+  console.error(red(`Error: invalid port "${arg}" (must be an integer between 1 and 65535).`));
+}
 
 if (ports.length === 0) {
   console.error(red('Error: No valid port numbers provided.'));
-  console.error('Ports must be between 1 and 65535.');
   process.exit(1);
 }
 
@@ -41,4 +45,8 @@ for (const port of ports) {
   } else {
     console.log(yellow(`⚠ Port ${port}: no process found`));
   }
+}
+
+if (invalid.length > 0) {
+  process.exitCode = 1;
 }
